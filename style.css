@@ -297,8 +297,17 @@ h1{
 .favotites_section_line{
   display: block;
   border-bottom:solid 1px #855945;
-  width: 5.875vh;/*47px*/
+  width: 7vw;/*47px*/
 }
+
+.favotites_section_line::before{
+  content:' Осталось:  ';
+}
+
+.favotites_section_p{
+	position: relative;
+}
+
 .favotites_section_h3{
   letter-spacing:2px;
   font-family: 'Inter', sans-serif ;

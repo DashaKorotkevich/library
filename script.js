@@ -28,7 +28,8 @@ const widthOffset = document.querySelector('.slider').clientWidth;
 
 const initSlider=()=>{
 	const img=document.createElement('img');
-	img.alt='';
+	img.style.position='relative'
+	img.alt=' ';
 	img.src='./img/img-about/'+images[activeImage];
 	sliderPlace.append(img);
 	nextImageGenerate();
@@ -41,6 +42,7 @@ const nextImageGenerate=()=>{
 		nextImg=0;
 	}
 	const img=document.createElement('img');
+	img.style.position='relative'
 	img.alt=' ';
 	img.src='./img/img-about/'+images[nextImg];
 	sliderPlace.append(img);
@@ -52,6 +54,7 @@ const prevImageGenerate=()=>{
 		prevImg=images.length-1;
 	}
 	const img=document.createElement('img');
+	img.style.position='relative'
 	img.alt=' ';
 	img.src='./img/img-about/'+images[prevImg];
 	sliderPlace.prepend(img);
@@ -72,12 +75,33 @@ const nextSlide=()=>{
 		activeImage=0;
 	}
 	nextImageGenerate();
-	document.querySelector('.slider-line > img').remove();
+	//document.querySelector('.slider-line > img').remove();
+	const item= document.querySelector('.slider-line > img');
+	removeAnimation(item)
 }
 
 initSlider();
 document.querySelector('.next-button').addEventListener('click', nextSlide);
 document.querySelector('.prev-button').addEventListener('click', prevSlide);
+
+function removeAnimation(item){
+	let count=0;
+	const d=document.createElement('div');
+	d.style.backgroundColor=`#fff${count}`
+	d.style.position=`absolute`
+	d.style.left='0'
+	d.style.top='0'
+	d.style.width='200px'
+	d.style.height='400px'
+	d.style.zIndex=2
+	item.appendChild(d);
+	while(count<10){
+		count=count+1;
+		d.style.background=`#fff${count}`
+	}
+	item.remove();
+	d.remove();
+}
 
 //Запросы
 
@@ -201,12 +225,21 @@ sendRequest1('GET', requestURL)
 		console.log(referencesBooksNoRepetitionsDescription)
 
 		const allBooksNoRepetitionsDescription = arrBooksFinal(all_booksWithoutDescription,allBooksDescription);
-		console.log(allBooksNoRepetitionsDescription)
+		console.log(allBooksNoRepetitionsDescription, 'efefwe')
 
 	
 		let counterBook=allBooksNoRepetitionsDescription.length;
 		console.log(counterBook)
 		
+
+		function createInner(book){
+			const foundItem = allKolVoArray.find(arr => book.description === arr[0]);
+   	  if (foundItem) {
+        return foundItem[1];
+    	}
+    return 0;
+			
+		}
 		// функция, создающая карточки
 		function createDiv(book){
 			const item = document.createElement('div');
@@ -215,17 +248,8 @@ sendRequest1('GET', requestURL)
 
 					const itemP = document.createElement('p');
 					itemP.classList.add('favotites_section_p');
-					/*const count=allKolVoArray.reduce((acc,items,index,allKolVoArray)=>{
-						const allBooksNoRepetitionsWithoutAllWithD=allBooksNoRepetitionsDescription.forEach(
-							(book)=>{
-								  book.description
-								if(book.description===items[index][1]){
-									return items[index][2]
-								}
-							}
-						)
-					})*/
-					itemP.innerHTML = `o`;
+					const inner= createInner(book);
+					itemP.innerHTML = `${inner}`;
 					item.appendChild(itemP);
 
 					const itemPLine = document.createElement('span');

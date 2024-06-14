@@ -177,11 +177,5 @@
 <?php include("app/include/footer.php");?>
 </div>
 <script src="script.js" charset="utf-8" type="text/javascript" charset="windows-1251"></script>
-
-<!--for($i=0;$i<$rows;++$i){
-  $result->data_seek($i); // вытаскиваем какие есть ячейки в строке
-  echo 'ID: '. $result->fetch_assoc()['id'] . '<br>'; //вытягивание данных
-}-->
- 
 </body>
 </html>
