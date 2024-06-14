@@ -85,22 +85,8 @@ document.querySelector('.next-button').addEventListener('click', nextSlide);
 document.querySelector('.prev-button').addEventListener('click', prevSlide);
 
 function removeAnimation(item){
-	let count=0;
-	const d=document.createElement('div');
-	d.style.backgroundColor=`#fff${count}`
-	d.style.position=`absolute`
-	d.style.left='0'
-	d.style.top='0'
-	d.style.width='200px'
-	d.style.height='400px'
-	d.style.zIndex=2
-	item.appendChild(d);
-	while(count<10){
-		count=count+1;
-		d.style.background=`#fff${count}`
-	}
+
 	item.remove();
-	d.remove();
 }
 
 //Запросы
@@ -213,19 +199,14 @@ sendRequest1('GET', requestURL)
 
 
 		const educationalBooksNoRepetitionsDescription = arrBooksFinal(educational_books,educational_booksDescription);
-		console.log('itog',educationalBooksNoRepetitionsDescription)
 		
 		const popularScienceBooksNoRepetitionsDescription = arrBooksFinal(popular_science_books,popular_science_booksDescription);
-		console.log('итог сложения',popularScienceBooksNoRepetitionsDescription)
 
 		const artisticBooksNoRepetitionsDescription = arrBooksFinal(artistic_books,artistic_booksDescription);
-		console.log(artisticBooksNoRepetitionsDescription)
 
 		const referencesBooksNoRepetitionsDescription = arrBooksFinal(references_books,references_booksDescription);
-		console.log(referencesBooksNoRepetitionsDescription)
 
 		const allBooksNoRepetitionsDescription = arrBooksFinal(all_booksWithoutDescription,allBooksDescription);
-		console.log(allBooksNoRepetitionsDescription, 'efefwe')
 
 	
 		let counterBook=allBooksNoRepetitionsDescription.length;

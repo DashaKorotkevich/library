@@ -6,5 +6,4 @@ $query = $pdo->prepare($sql);
 $query->execute();
 $data = $query->fetchAll(PDO::FETCH_ASSOC); // Получаем все строки как ассоциативный массив
 echo json_encode($data);// не надо присылать ответ в юникоде
-
 ?>
